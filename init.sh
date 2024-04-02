@@ -262,7 +262,7 @@ stderr_logfile=/dev/null
 stdout_logfile=/dev/null
 
 [program:agent]
-command=$WORK_DIR/nezha-agent -s localhost:$GRPC_PORT -p abcdefghijklmnopqr
+command=$WORK_DIR/nezha-agent -s localhost:$GRPC_PORT -p $(tr -dc 'A-Za-z0-9' </dev/urandom | head -c 18)
 autostart=true
 autorestart=true
 stderr_logfile=/dev/null
