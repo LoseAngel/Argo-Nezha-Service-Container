@@ -145,7 +145,6 @@ docker run -dit \
 
 ### docker-compose 部署
 ```
-version: '3.8'
 networks:
     nezha-dashboard:
         name: nezha-dashboard
@@ -159,7 +158,7 @@ services:
             - nezha-dashboard
         environment:
             - GH_USER=<填 github 用户名>
-            - GH_EMAIL=<<填 github 邮箱>
+            - GH_EMAIL=<填 github 邮箱>
             - GH_PAT=<填获取的>
             - GH_REPO=<填自定义的>
             - GH_CLIENTID=<填获取的>

@@ -145,7 +145,6 @@ docker run -dit \
 
 ### docker-compose deployment
 ```
-version: '3.8'
 networks:
     nezha-dashboard:
         name: nezha-dashboard
@@ -160,7 +159,7 @@ services.
         environment:
             - GH_USER=<fill in github username>
             - GH_EMAIL=<fill in your github email>
-            - GH_PAT=<<fill in obtained>
+            - GH_PAT=<fill in obtained>
             - GH_REPO=<fill in customized>
             - GH_CLIENTID=<fill in obtained>
             - GH_CLIENTSECRET=<fill in fetched>
