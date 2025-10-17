@@ -318,13 +318,14 @@ dashboard_variables() {
   # 询问版本自动后台下载
   [ -z "$DASHBOARD_VERSION" ] && reading "\n (11/12) $(text 40) " DASHBOARD_VERSION
   if [ -z "$DASHBOARD_VERSION" ]; then
-    DASHBOARD_LATEST='v0.20.13'
+  if [ -z "$DASHBOARD_VERSION" ] || [[ "$DASHBOARD_VERSION" =~ 0\.20\.13$ ]]; then
+    { wget -qO $TEMP_DIR/dashboard.zip ${GH_PROXY}https://github.com/nap0o/nezha-dashboard/releases/download/v0.20.13/dashboard-linux-$ARCH.zip >/dev/null 2>&1; }&
   elif [[ "$DASHBOARD_VERSION" =~ 0\.[0-9]{1,2}\.[0-9]{1,2}$ ]]; then
     DASHBOARD_LATEST=$(sed 's/[A-Za-z]//; s/^/v&/' <<< "$DASHBOARD_VERSION")
+    { wget -qO $TEMP_DIR/dashboard.zip ${GH_PROXY}https://github.com/naiba/nezha/releases/download/$DASHBOARD_LATEST/dashboard-linux-$ARCH.zip >/dev/null 2>&1; }&
   else
     error "\n $(text 42) \n"
   fi
-  { wget -qO $TEMP_DIR/dashboard.zip ${GH_PROXY}https://github.com/naiba/nezha/releases/download/$DASHBOARD_LATEST/dashboard-linux-$ARCH.zip >/dev/null 2>&1; }&
 
   [ -z "$AUTO_RENEW_OR_NOT"] && reading "\n (12/12) $(text 41) " AUTO_RENEW_OR_NOT
   grep -qiw 'n' <<< "$AUTO_RENEW_OR_NOT" && IS_AUTO_RENEW=#
